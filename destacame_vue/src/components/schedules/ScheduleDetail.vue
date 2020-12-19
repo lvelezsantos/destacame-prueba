@@ -32,16 +32,17 @@
         </div>
 
         <b-table striped hover :items="schedule.passengers_list" :fields="fields">
-<!--          <template #cell(actions)="row">-->
-<!--            <b-button size="sm" :to="{ 'name': 'schedule-detail', params: {'id': row.item.id} }"-->
-<!--                      class="mr-1 btn btn-info">-->
-<!--              Ver-->
-<!--            </b-button>-->
-
-<!--          </template>-->
+          <template #cell(actions)="row">
+            <b-button class="btn btn-danger" size="sm" @click="deleteModal(row.item, row.index, $event.target)">
+              Eliminar
+            </b-button>
+          </template>
         </b-table>
       </div>
     </div>
+    <b-modal ref="delete-modal" :id="infoModal.id" :title="infoModal.title" @ok="handleOk" @hide="resetInfoModal">
+      <pre>{{ infoModal.content }}</pre>
+    </b-modal>
     <!--    <b-card class="mt-3" header="Form Data Result">-->
     <!--      <pre class="m-0">{{ form }}</pre>-->
     <!--    </b-card>-->
@@ -67,6 +68,11 @@ export default {
       form: {
         passenger: null,
         seat: null
+      },
+      infoModal: {
+        title: '',
+        id: 'delete-modal',
+        description: '',
       },
       breadcrumb_items: [
         {
@@ -110,10 +116,10 @@ export default {
       })
           .then(function (response) {
             alert('Se ha asignado la silla correctamente')
-            // _this.schedule = null
+
             _this.schedule.passengers_list = []
             _this.findSchedule()
-            // router.push({name: 'schedule-list'})
+
             console.log(response);
           })
           .catch(function (error) {
@@ -149,16 +155,50 @@ export default {
       });
 
       this.seats = [{name: 'Choose...', id: null}]
-      for (let i=1; i <= this.schedule.bus_data.capacity; i++) {
-        if(used_seats.indexOf(i) == -1) {
+      for (let i = 1; i <= this.schedule.bus_data.capacity; i++) {
+        if (used_seats.indexOf(i) == -1) {
           this.seats.push({
             name: i, id: i
           });
         }
       }
+    },
+    hideModal() {
+      this.$refs['delete-modal'].hide()
+    },
+    deleteModal(item, index, button) {
+      this.infoModal.title = 'Esta seguro que desea eliminar la asignacion del pasajero: ' + item.passenger_data.name
+      this.infoModal.content = item.description
+      this.$root.$emit('bv::show::modal', this.infoModal.id, button)
+      this.selectedItem = item
+    },
+    resetInfoModal() {
+      this.infoModal.title = ''
+      this.infoModal.content = ''
+    },
+    deletePassengerSchedule() {
+      let _this = this
+      let selectedItem = _this.selectedItem
+      var url = config.API_LOCATION + '/api/passenger-schedules/' + selectedItem.id
+      axios.delete(url)
+          .then(res => {
+            console.log(res);
+            alert('Se ha eliminado la asignacion del pasajero ' + selectedItem.passenger_data.name)
 
-      console.log(used_seats)
-      console.log(this.seats)
+            _this.schedule.passengers_list = []
+            _this.hideModal()
+            _this.findSchedule()
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+
+    },
+    handleOk(bvModalEvt) {
+      // Prevent modal from closing
+      bvModalEvt.preventDefault()
+      // Trigger submit handler
+      this.deletePassengerSchedule()
     },
   }
 }
