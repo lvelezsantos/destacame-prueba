@@ -4,13 +4,16 @@
     <div class="row">
       <div class="col-6">
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-          <b-form-group id="input-group-source" label="Origen:" label-for="select-source">
-            <b-form-select v-model="form.source" :options="places" text-field="name" value-field="id"
-                           label="Origen"></b-form-select>
+          <b-form-group id="input-group-name" label="Nombre:" label-for="input-name">
+            <b-form-input
+                id="input-name"
+                v-model="form.name"
+                placeholder="Ingrese el nombre del bus"
+                required
+            ></b-form-input>
           </b-form-group>
-          <b-form-group id="input-group-destination" label="Destino:" label-for="select-destination">
-            <b-form-select v-model="form.destination" :options="places" text-field="name"
-                           value-field="id"></b-form-select>
+          <b-form-group id="input-group-driver" label="Conductor:" label-for="select-destination">
+            <b-form-select v-model="form.driver" :options="drivers" text-field="name" value-field="id"></b-form-select>
           </b-form-group>
 
 
@@ -35,10 +38,10 @@ const axios = require('axios');
 export default {
   data() {
     return {
-      places: [],
+      drivers: [],
       form: {
-        source: '',
-        destination: '',
+        name: '',
+        driver: '',
       },
       show: true,
       breadcrumb_items: [
@@ -47,40 +50,34 @@ export default {
           to: {name: 'home'}
         },
         {
-          text: 'Rutas',
-          to: {name: 'route-list'}
+          text: 'Buses',
+          to: {name: 'bus-list'}
         },
         {
-          text: 'Actualizar Ruta',
+          text: 'Actualizar Bus',
           active: true
         }
       ],
     }
   },
   created() {
-    this.findPlaces()
+    this.findDrivers()
     this.find()
   },
   methods: {
-    find: function () {
-      let url = config.API_LOCATION + '/api/routes/' + this.$route.params.id
-      axios.get(url)
-          .then(res => this.form = res.data)
-
-    },
     onSubmit(event) {
       event.preventDefault()
       let router = this.$router;
-      let url = config.API_LOCATION + '/api/routes/' + this.$route.params.id + '/'
+      let url = config.API_LOCATION + '/api/buses/' + this.$route.params.id + '/'
       let form = this.form
-      console.log(form);
+
       axios.put(url, {
-        source: form.source,
-        destination: form.destination,
+        name: form.name,
+        driver: form.driver,
       })
           .then(function (response) {
-            alert('la ruta ha sido actualizada')
-            router.push({name: 'route-list'})
+            alert('el bus ha sido actualizado')
+            router.push({name: 'bus-list'})
             console.log(response);
           })
           .catch(function (error) {
@@ -89,10 +86,10 @@ export default {
           });
       // alert(JSON.stringify(this.form))
     },
-    findPlaces() {
-      var url = config.API_LOCATION + '/api/places/'
+    findDrivers() {
+      var url = config.API_LOCATION + '/api/drivers/'
       axios.get(url)
-          .then(res => this.places = res.data)
+          .then(res => this.drivers = res.data)
     },
     onReset(event) {
       event.preventDefault()
@@ -104,7 +101,13 @@ export default {
       this.$nextTick(() => {
         this.show = true
       })
-    }
+    },
+    find: function () {
+      let url = config.API_LOCATION + '/api/buses/' + this.$route.params.id
+      axios.get(url)
+          .then(res => this.form = res.data)
+
+    },
   }
 }
 </script>

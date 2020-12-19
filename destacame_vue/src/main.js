@@ -30,6 +30,8 @@ import RouteUpdate from './components/routes/RouteUpdate.vue'
 
 import BusList from './components/buses/BusList.vue'
 import BusCreate from './components/buses/BusCreate.vue'
+import BusDetail from './components/buses/BusDetail.vue'
+import BusUpdate from './components/buses/BusUpdate.vue'
 
 import ScheduleList from './components/schedules/ScheduleList.vue'
 import ScheduleCreate from './components/schedules/ScheduleCreate.vue'
@@ -75,6 +77,8 @@ const routes = [
 
     {path: "/buses", component: BusList, name: 'bus-list'},
     {path: "/buses/create", component: BusCreate, name: 'bus-create'},
+    {path: "/buses/:id", component: BusDetail, name: 'bus-detail'},
+    {path: "/buses/:id/update", component: BusUpdate, name: 'bus-update'},
 
     {path: "/schedules", component: ScheduleList, name: 'schedule-list'},
     {path: "/schedules/create", component: ScheduleCreate, name: 'schedule-create'},
