@@ -41,8 +41,12 @@
         {{ data.item.occupation }} %
       </template>
       <template #cell(actions)="row">
-        <b-button size="sm" :to="{ 'name': 'schedule-detail', params: {'id': row.item.id} }" class="mr-1 btn btn-info">
+        <b-button size="sm" :to="{ 'name': 'schedule-detail', params: {'id': row.item.id} }" class="mr-1 btn btn-primary">
           Ver Pasajeros
+        </b-button>
+
+        <b-button size="sm" :to="{ 'name': 'schedule-update', params: {'id': row.item.id} }" class="mr-1 btn btn-info">
+          Editar
         </b-button>
 
       </template>

@@ -3,6 +3,7 @@ import Vue from 'vue'
 import App from './App.vue'
 
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
+import moment from 'moment';
 // import VueDynamicForms from '@asigloo/vue-dynamic-forms';
 
 import VueRouter from 'vue-router'
@@ -36,6 +37,7 @@ import BusUpdate from './components/buses/BusUpdate.vue'
 import ScheduleList from './components/schedules/ScheduleList.vue'
 import ScheduleCreate from './components/schedules/ScheduleCreate.vue'
 import ScheduleDetail from './components/schedules/ScheduleDetail.vue'
+import ScheduleUpdate from './components/schedules/ScheduleUpdate.vue'
 
 
 // Vue.use(VueDynamicForms);
@@ -83,6 +85,7 @@ const routes = [
     {path: "/schedules", component: ScheduleList, name: 'schedule-list'},
     {path: "/schedules/create", component: ScheduleCreate, name: 'schedule-create'},
     {path: "/schedules/:id", component: ScheduleDetail, name: 'schedule-detail'},
+    {path: "/schedules/:id/update", component: ScheduleUpdate, name: 'schedule-update'},
 ]
 
 const router = new VueRouter({
@@ -90,7 +93,7 @@ const router = new VueRouter({
     routes // short for `routes: routes`
 })
 
-import moment from 'moment';
+
 
 Vue.filter('formatDate', function(value) {
     if (value) {
