@@ -9,6 +9,9 @@ class Place(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ('name', )
+
 
 class Route(models.Model):
     source = models.ForeignKey('Place', on_delete=models.CASCADE, related_name='sources')
@@ -27,6 +30,9 @@ class Driver(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ('name', )
+
 
 class Bus(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -38,6 +44,7 @@ class Bus(models.Model):
 
     class Meta:
         verbose_name_plural = _('Buses')
+        ordering = ('name',)
 
 
 class Passenger(models.Model):
@@ -46,6 +53,9 @@ class Passenger(models.Model):
 
     def __str__(self):
         return f'{self.identification} - {self.name}'
+
+    class Meta:
+        ordering = ('name', )
 
 
 class Schedule(models.Model):

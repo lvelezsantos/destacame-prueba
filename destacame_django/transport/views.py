@@ -37,7 +37,7 @@ class RouteViewSet(ModelViewSet):
             When(schedules_count=0, then=0),
             default=F('passengers') / F('schedules_count')
         )
-    )
+    ).order_by('-passengers')
 
 
 class ScheduleViewSet(ModelViewSet):
@@ -49,7 +49,7 @@ class ScheduleViewSet(ModelViewSet):
     ).select_related(
         'bus', 'bus__driver', 'route', 'route__source',
         'route__destination',
-    )
+    ).order_by('start', 'end')
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
