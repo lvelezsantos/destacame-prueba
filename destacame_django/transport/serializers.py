@@ -102,6 +102,8 @@ class ScheduleSerializer(serializers.ModelSerializer):
         schedules = Schedule.objects.filter(
             bus=data.get('bus')
         )
+        if self.instance:
+            schedules = schedules.exclude(id=self.instance.id)
 
         schedules = schedules.filter(
             (Q(start__lte=data.get('start')) & Q(end__gte=data.get('start'))) |
