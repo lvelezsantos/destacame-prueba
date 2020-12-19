@@ -66,6 +66,7 @@ export default {
       fields: [
         {key: 'id', sortable: false},
         {key: 'name', sortable: false, label: 'Nombre'},
+        {key: 'description', sortable: false, label: 'Descripcion'},
         {key: 'actions', label: 'Acciones', }
       ]
     }

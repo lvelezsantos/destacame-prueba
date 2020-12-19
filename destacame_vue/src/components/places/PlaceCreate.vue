@@ -11,6 +11,14 @@
                 required
             ></b-form-input>
           </b-form-group>
+          <b-form-group id="input-group-description" label="Descripcion:" label-for="input-description">
+            <b-form-textarea
+                id="input-description"
+                v-model="form.description"
+                placeholder="Ingrese la descripcion"
+                required
+            ></b-form-textarea>
+          </b-form-group>
 
           <b-button class="mr-2" type="submit" variant="primary">Submit</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
@@ -35,6 +43,7 @@ export default {
     return {
       form: {
         name: '',
+        description: '',
       },
       show: true
     }
@@ -47,6 +56,7 @@ export default {
       let place_name = this.form.name
       axios.post(url, {
         name: place_name,
+        description: this.form.description
       })
       .then(function (response) {
         alert('el lugar "' + place_name + '" ha sido creado')
@@ -63,6 +73,7 @@ export default {
       event.preventDefault()
       // Reset our form values
       this.form.name = ''
+      this.form.description = ''
       // Trick to reset/clear native browser form validation state
       this.show = false
       this.$nextTick(() => {

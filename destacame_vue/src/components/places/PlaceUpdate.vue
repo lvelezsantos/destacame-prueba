@@ -11,6 +11,14 @@
                 required
             ></b-form-input>
           </b-form-group>
+          <b-form-group id="input-group-description" label="Descripcion:" label-for="input-description">
+            <b-form-textarea
+                id="input-description"
+                v-model="form.description"
+                placeholder="Ingrese la descripcion"
+                required
+            ></b-form-textarea>
+          </b-form-group>
 
           <b-button class="mr-2" type="submit" variant="primary">Submit</b-button>
         </b-form>
@@ -38,6 +46,7 @@ export default {
     return {
       form: {
         name: '',
+        description: '',
       },
       show: true
     }
@@ -50,6 +59,7 @@ export default {
       let place_name = this.form.name
       axios.put(url, {
         name: place_name,
+        description: this.form.description,
       })
       .then(function (response) {
         alert('el lugar "' + place_name + '" ha sido actualizado')
@@ -69,6 +79,7 @@ export default {
       axios.get(url)
           .then(function (res){
               _this.form.name = res.data.name;
+              _this.form.description = res.data.description;
           });
 
     },
