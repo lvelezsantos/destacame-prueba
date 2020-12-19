@@ -36,15 +36,10 @@ WORKDIR /code
 COPY requirements.txt requirements.txt
 RUN  pip3 install -r /code/requirements.txt
 
-ARG CODE_VERSION=1
+ARG CODE_VERSION=2
 COPY . .
-# Installing requirements
+
 COPY destacame/local_settings.docker.py /code/destacame/local_settings.py
-
-# install requirements
-
-
-
 
 ## DO NOT RUN CELERY / UWSGI AS ROOT
 RUN groupadd -g 1000 -r django && useradd -r -u 1000 -g django django

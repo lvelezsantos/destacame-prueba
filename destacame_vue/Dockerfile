@@ -5,7 +5,7 @@ ARG PACKAGE_VER=1
 COPY package*.json ./
 RUN npm install
 
-ARG FRONT_VER=1
+ARG FRONT_VER=2
 COPY . .
 
 COPY src/config.docker.js /code/src/config.js
