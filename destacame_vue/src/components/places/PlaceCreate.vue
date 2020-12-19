@@ -1,5 +1,6 @@
 <template>
   <div>
+    <b-breadcrumb :items="breadcrumb_items"></b-breadcrumb>
     <div class="row">
       <div class="col-6">
         <b-form @submit="onSubmit" @reset="onReset" v-if="show">
@@ -45,7 +46,21 @@ export default {
         name: '',
         description: '',
       },
-      show: true
+      show: true,
+      breadcrumb_items: [
+        {
+          text: 'Inicio',
+          to: {name: 'home'}
+        },
+        {
+          text: 'Lugares',
+          to: {name: 'place-list'}
+        },
+        {
+          text: 'Crear Lugar',
+          active: true
+        }
+      ],
     }
   },
   methods: {

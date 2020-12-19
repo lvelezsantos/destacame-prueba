@@ -48,7 +48,7 @@ export default {
           to: {name: 'driver-list'}
         },
         {
-          text: 'Detalle del conductor',
+          text: 'Crear conductor',
           active: true
         }
       ],

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <b-breadcrumb :items="breadcrumb_items"></b-breadcrumb>
     <div class="row">
       <div class="col-6">
         <b-form @submit="onSubmit" v-if="show">
@@ -38,7 +39,21 @@ export default {
       form: {
         name: '',
       },
-      show: true
+      show: true,
+      breadcrumb_items: [
+        {
+          text: 'Inicio',
+          to: {name: 'home'}
+        },
+        {
+          text: 'Conductores',
+          to: {name: 'driver-list'}
+        },
+        {
+          text: 'Actualizar Conductor',
+          active: true
+        }
+      ],
     }
   },
   methods: {
