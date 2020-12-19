@@ -12,7 +12,7 @@
           </b-form-group>
 
 
-          <b-button class="mr-2" type="submit" variant="primary">Submit</b-button>
+          <b-button class="mr-2" type="submit" variant="primary">Enviar</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
         </b-form>
       </div>
