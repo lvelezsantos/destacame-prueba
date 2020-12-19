@@ -1,0 +1,62 @@
+version: '3.5'
+
+x-build-app: &app_default
+    image: registry.digitalocean.com/live-ventures/vintagestock-app:local
+    restart: always
+
+x-depends: &app_override_options_default
+#    depends_on:
+#      - rabbit-server
+#      - db
+#      - redis
+    extra_hosts:
+      - postgres-server:192.168.1.30
+      - rabbit-server:192.168.1.30
+      - elasticsearch-server:192.168.1.30
+      - redis:192.168.1.30
+
+    volumes:
+      - /tmp/vintagestock/media/:/code/media
+      - /tmp/vintagestock/private_media/:/code/private-media
+      - /tmp/vintagestock/ingram_files/:/code/ingram_files
+      - /tmp/vintagestock/collectstatic/:/code/collectstatic
+
+
+services:
+
+  api:
+    build:
+      context: ./destacame_django
+    restart: always
+#    command: "uwsgi --http :8000 --module destacame.wsgi --enable-threads --processes 8 --threads 1 --max-worker-lifetime 100 --max-requests 1000 --master --harakiri 200" # --stats /tmp/stats.socket
+    command: "python manage.py runserver 0.0.0.0:8000" # --stats /tmp/stats.socket
+
+    ports:
+    - 9020:8000
+
+  front:
+    build:
+      context: ./destacame_vue
+    restart: always
+    command: "npm run serve"
+
+    ports:
+      - 9030:8080
+
+
+  postgres-db:
+    image: postgres:10.15
+#    ports:
+#      - "5432"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 'destacame'
+      POSTGRES_USER: 'destacame'
+      POSTGRES_DB: 'destacame'
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
+
+
+volumes:
+  postgres_data:
+    driver: local

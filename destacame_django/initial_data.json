@@ -1,0 +1,326 @@
+[
+  {
+    "model": "transport.place",
+    "pk": 1,
+    "fields": {
+      "name": "Cartagena",
+      "description": null
+    }
+  },
+  {
+    "model": "transport.place",
+    "pk": 2,
+    "fields": {
+      "name": "Sincelejo",
+      "description": null
+    }
+  },
+  {
+    "model": "transport.place",
+    "pk": 3,
+    "fields": {
+      "name": "Bogota",
+      "description": null
+    }
+  },
+  {
+    "model": "transport.place",
+    "pk": 4,
+    "fields": {
+      "name": "Medellin",
+      "description": null
+    }
+  },
+  {
+    "model": "transport.place",
+    "pk": 5,
+    "fields": {
+      "name": "Monteria",
+      "description": null
+    }
+  },
+  {
+    "model": "transport.route",
+    "pk": 1,
+    "fields": {
+      "source": 3,
+      "destination": 2
+    }
+  },
+  {
+    "model": "transport.route",
+    "pk": 2,
+    "fields": {
+      "source": 3,
+      "destination": 4
+    }
+  },
+  {
+    "model": "transport.route",
+    "pk": 3,
+    "fields": {
+      "source": 3,
+      "destination": 5
+    }
+  },
+  {
+    "model": "transport.route",
+    "pk": 4,
+    "fields": {
+      "source": 3,
+      "destination": 1
+    }
+  },
+  {
+    "model": "transport.driver",
+    "pk": 1,
+    "fields": {
+      "name": "Andres"
+    }
+  },
+  {
+    "model": "transport.driver",
+    "pk": 2,
+    "fields": {
+      "name": "Manuel"
+    }
+  },
+  {
+    "model": "transport.driver",
+    "pk": 3,
+    "fields": {
+      "name": "Fabian"
+    }
+  },
+  {
+    "model": "transport.driver",
+    "pk": 4,
+    "fields": {
+      "name": "Victor"
+    }
+  },
+  {
+    "model": "transport.bus",
+    "pk": 1,
+    "fields": {
+      "name": "BUS01",
+      "driver": 1,
+      "capacity": 10.0
+    }
+  },
+  {
+    "model": "transport.bus",
+    "pk": 2,
+    "fields": {
+      "name": "BUS02",
+      "driver": 2,
+      "capacity": 10.0
+    }
+  },
+  {
+    "model": "transport.bus",
+    "pk": 3,
+    "fields": {
+      "name": "BUS03",
+      "driver": 3,
+      "capacity": 10.0
+    }
+  },
+  {
+    "model": "transport.bus",
+    "pk": 4,
+    "fields": {
+      "name": "BUS04",
+      "driver": 4,
+      "capacity": 10.0
+    }
+  },
+  {
+    "model": "transport.passenger",
+    "pk": 1,
+    "fields": {
+      "identification": "11111",
+      "name": "Luis"
+    }
+  },
+  {
+    "model": "transport.passenger",
+    "pk": 2,
+    "fields": {
+      "identification": "22222",
+      "name": "Carlos"
+    }
+  },
+  {
+    "model": "transport.passenger",
+    "pk": 3,
+    "fields": {
+      "identification": "33333",
+      "name": "Marcos"
+    }
+  },
+  {
+    "model": "transport.passenger",
+    "pk": 4,
+    "fields": {
+      "identification": "44444",
+      "name": "Manuel"
+    }
+  },
+  {
+    "model": "transport.passenger",
+    "pk": 5,
+    "fields": {
+      "identification": "55555",
+      "name": "Andres"
+    }
+  },
+  {
+    "model": "transport.schedule",
+    "pk": 1,
+    "fields": {
+      "start": "2020-12-21T09:00:00Z",
+      "end": "2020-12-21T15:00:00Z",
+      "bus": 1,
+      "route": 1
+    }
+  },
+  {
+    "model": "transport.schedule",
+    "pk": 2,
+    "fields": {
+      "start": "2020-12-22T05:00:00Z",
+      "end": "2020-12-24T13:00:00Z",
+      "bus": 2,
+      "route": 2
+    }
+  },
+  {
+    "model": "transport.schedule",
+    "pk": 3,
+    "fields": {
+      "start": "2020-12-23T06:00:00Z",
+      "end": "2020-12-23T13:00:00Z",
+      "bus": 3,
+      "route": 3
+    }
+  },
+  {
+    "model": "transport.schedule",
+    "pk": 4,
+    "fields": {
+      "start": "2020-12-25T05:00:00Z",
+      "end": "2020-12-25T12:00:00Z",
+      "bus": 1,
+      "route": 1
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 1,
+    "fields": {
+      "schedule": 1,
+      "passenger": 1,
+      "seat": 1
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 2,
+    "fields": {
+      "schedule": 1,
+      "passenger": 2,
+      "seat": 9
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 3,
+    "fields": {
+      "schedule": 1,
+      "passenger": 3,
+      "seat": 7
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 4,
+    "fields": {
+      "schedule": 1,
+      "passenger": 4,
+      "seat": 5
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 5,
+    "fields": {
+      "schedule": 3,
+      "passenger": 5,
+      "seat": 2
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 6,
+    "fields": {
+      "schedule": 3,
+      "passenger": 5,
+      "seat": 7
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 7,
+    "fields": {
+      "schedule": 3,
+      "passenger": 5,
+      "seat": 9
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 8,
+    "fields": {
+      "schedule": 3,
+      "passenger": 3,
+      "seat": 4
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 9,
+    "fields": {
+      "schedule": 3,
+      "passenger": 5,
+      "seat": 3
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 10,
+    "fields": {
+      "schedule": 4,
+      "passenger": 1,
+      "seat": 1
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 11,
+    "fields": {
+      "schedule": 2,
+      "passenger": 3,
+      "seat": 6
+    }
+  },
+  {
+    "model": "transport.passengerschedule",
+    "pk": 12,
+    "fields": {
+      "schedule": 2,
+      "passenger": 4,
+      "seat": 3
+    }
+  }
+]
