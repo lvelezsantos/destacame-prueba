@@ -11,17 +11,17 @@
     </div>
 
     <b-table striped hover :items="elements" :fields="fields">
-<!--      <template #cell(actions)="row">-->
-<!--        <b-button size="sm" :to="{ 'name': 'passenger-detail', params: {'id': row.item.id} }" class="mr-1 btn btn-info">-->
-<!--          Ver-->
-<!--        </b-button>-->
-<!--        <b-button size="sm" :to="{ 'name': 'passenger-update', params: {'id': row.item.id} }" class="mr-1 btn btn-primary">-->
-<!--          Editar-->
-<!--        </b-button>-->
-<!--        <b-button class="btn btn-danger" size="sm" @click="deleteModal(row.item, row.index, $event.target)">-->
-<!--          Eliminar-->
-<!--        </b-button>-->
-<!--      </template>-->
+      <template #cell(actions)="row">
+        <b-button size="sm" :to="{ 'name': 'route-detail', params: {'id': row.item.id} }" class="mr-1 btn btn-info">
+          Ver
+        </b-button>
+        <b-button size="sm" :to="{ 'name': 'route-update', params: {'id': row.item.id} }" class="mr-1 btn btn-primary">
+          Editar
+        </b-button>
+        <b-button class="btn btn-danger" size="sm" @click="deleteModal(row.item, row.index, $event.target)">
+          Eliminar
+        </b-button>
+      </template>
     </b-table>
 
     <b-modal ref="delete-modal" :id="infoModal.id" :title="infoModal.title" @ok="handleOk" @hide="resetInfoModal">
@@ -83,8 +83,7 @@ export default {
       this.$refs['delete-modal'].hide()
     },
     deleteModal(item, index, button) {
-      this.infoModal.title = 'Esta seguro que desea eliminar el pasajero: ' + item.name
-      this.infoModal.content = item.identification
+      this.infoModal.title = 'Esta seguro que desea eliminar la ruta: ' + item.repr
       this.$root.$emit('bv::show::modal', this.infoModal.id, button)
       this.selectedItem = item
     },
@@ -92,14 +91,14 @@ export default {
       this.infoModal.title = ''
       this.infoModal.content = ''
     },
-    deletePassenger() {
+    deleteRoute() {
       let _this = this
       let selectedItem = _this.selectedItem
       var url = config.API_LOCATION + '/api/routes/' + selectedItem.id
       axios.delete(url)
           .then(res => {
             console.log(res);
-            alert('Se ha eliminado la ruta ' + selectedItem.name)
+            alert('Se ha eliminado la ruta ' + selectedItem.repr)
 
             _this.hideModal()
             _this.findAll()
@@ -113,7 +112,7 @@ export default {
       // Prevent modal from closing
       bvModalEvt.preventDefault()
       // Trigger submit handler
-      this.deletePassenger()
+      this.deleteRoute()
     },
   }
 }

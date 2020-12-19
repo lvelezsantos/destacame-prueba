@@ -25,6 +25,8 @@ import DriverUpdate from './components/drivers/DriverUpdate.vue'
 
 import RouteList from './components/routes/RouteList.vue'
 import RouteCreate from './components/routes/RouteCreate.vue'
+import RouteDetail from './components/routes/RouteDetail.vue'
+import RouteUpdate from './components/routes/RouteUpdate.vue'
 
 import BusList from './components/buses/BusList.vue'
 import BusCreate from './components/buses/BusCreate.vue'
@@ -68,6 +70,8 @@ const routes = [
 
     {path: "/routes", component: RouteList, name: 'route-list'},
     {path: "/routes/create", component: RouteCreate, name: 'route-create'},
+    {path: "/routes/:id", component: RouteDetail, name: 'route-detail'},
+    {path: "/routes/:id/update", component: RouteUpdate, name: 'route-update'},
 
     {path: "/buses", component: BusList, name: 'bus-list'},
     {path: "/buses/create", component: BusCreate, name: 'bus-create'},

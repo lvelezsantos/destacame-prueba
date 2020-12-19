@@ -3,10 +3,12 @@
   <div class="container">
     <b-breadcrumb :items="breadcrumb_items"></b-breadcrumb>
 
-    <h3>{{ element.name }}</h3>
-    <p>
-      {{ element.identification }}
-    </p>
+    <h3>{{ element.source_data.name }} - {{element.destination_data.name}}</h3>
+    <ul>
+      <li><strong>Pasajeros: </strong> {{element.passengers}}</li>
+      <li><strong>Rutas Programadas: </strong> {{element.schedules_count}}</li>
+      <li><strong>Promedio de pasajeros: </strong> {{element.passenger_avg}}</li>
+    </ul>
   </div>
 </template>
 
@@ -31,11 +33,11 @@ export default {
           to: {name: 'home'}
         },
         {
-          text: 'Pasajeros',
-          to: {name: 'passenger-list'}
+          text: 'Rutas',
+          to: {name: 'route-list'}
         },
         {
-          text: 'Detalle del pasajero',
+          text: 'Detalle de la ruta',
           active: true
         }
       ]
@@ -43,7 +45,7 @@ export default {
   },
   methods: {
     find: function () {
-      let url = config.API_LOCATION + '/api/passengers/' + this.$route.params.id
+      let url = config.API_LOCATION + '/api/routes/' + this.$route.params.id
       axios.get(url)
           .then(res => this.element = res.data)
 

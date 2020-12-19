@@ -141,7 +141,7 @@ export default {
       // Prevent modal from closing
       bvModalEvt.preventDefault()
       // Trigger submit handler
-      this.deletePassenger()
+      this.deleteRoute()
     },
 
     onSubmit(event) {
